@@ -24,7 +24,7 @@ public class RA_01 {
 				.statusCode(200)
 				.body("scope", equalTo("APP"))
 				.header("server", "Apache/2.4.52 (Ubuntu)")
-				.extract().response().asString();
+				.extract().response.asString();
 		System.out.println("System.");
 		
 		JsonPath addPlaceResponseJson = ReusableMethods.rawToJson(addPlaceResponse);
@@ -48,7 +48,7 @@ public class RA_01 {
 								.queryParam("place_id", placeId)
 								.header("Content-Type", "application/json")
 								.when().get("maps/api/place/get/json")
-								.then().assertThat()
+								.then().assertThat().log().all()
 								.statusCode(200)
 								.extract()
 								.response()

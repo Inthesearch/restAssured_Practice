@@ -24,37 +24,14 @@ public class RA_01 {
 				.statusCode(200)
 				.body("scope", equalTo("APP"))
 				.header("server", "Apache/2.4.52 (Ubuntu)")
-				.extract().response().asString();
+				.extract().asString();
 		System.out.println("System.");
 		
 		JsonPath addPlaceResponseJson = ReusableMethods.rawToJson(addPlaceResponse);
 		String placeId = addPlaceResponseJson.getString("place_id");
 		
-//		Update address
 		
-		String newAddress = "Summer Walk, Africa";
-		given().log().all().queryParam("key", "qaclick123")
-		.header("Content-Type", "application/json")
-		.body(payload.updateAddress(placeId, newAddress))
-		.when().put("maps/api/place/update/json")
-		.then().assertThat()
-		.statusCode(200)
-		.body("msg", equalTo("Address successfully updated"));
 		
-//		Get place
-		
-		String getPlaceAddress = given().log().all()
-								.queryParam("key", "qaclick123")
-								.queryParam("place_id", placeId)
-								.header("Content-Type", "application/json")
-								.when().get("maps/api/place/get/json")
-								.then().assertThat()
-								.statusCode(200)
-								.extract()
-								.response()
-								.asString();
-		System.out.println(newAddress);
-		Assert.assertEquals(ReusableMethods.rawToJson(getPlaceAddress).getString("address"), newAddress);
 		
 	}
 
