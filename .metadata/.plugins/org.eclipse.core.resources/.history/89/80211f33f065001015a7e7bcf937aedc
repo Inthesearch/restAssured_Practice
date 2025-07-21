@@ -1,0 +1,23 @@
+package demo_module;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import demo_module.utilities.ReusableMethods;
+import demo_module.utilities.payload;
+import io.restassured.path.json.JsonPath;
+
+public class SumValidation {
+
+	@Test
+	public void sumValidation() {
+//		Verify if Sum of all Course prices matches with Purchase Amount
+		JsonPath response = ReusableMethods.rawToJson(payload.getResponse());
+		int sum = 0;
+		for(int i = 0; i < response.getInt("courses.size()"); i++ ) {
+			sum +=  response.getInt("courses["+i+"].price") * response.getInt("courses["+i+"].copies");
+		}
+		System.out.println("\nTotal purchase amount: "+sum);
+		Assert.assertEquals(sum, response.getInt("dashboard.purchaseAmount"));
+	}
+}

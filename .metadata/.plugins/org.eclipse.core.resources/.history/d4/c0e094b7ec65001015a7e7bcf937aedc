@@ -1,0 +1,22 @@
+package demo_module;
+
+import demo_module.utilities.ReusableMethods;
+import demo_module.utilities.payload;
+import io.restassured.path.json.JsonPath;
+
+public class RA_02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		System.out.println(payload.getResponse());
+			JsonPath response = ReusableMethods.rawToJson(payload.getResponse());
+//			Print No of courses returned by API
+			String courseLength = response.get("courses.size()").toString();
+			System.out.println(courseLength.toString());
+			
+//			Print Purchase Amount per course
+//			for(int i = 0; i<)
+			
+	}
+
+}

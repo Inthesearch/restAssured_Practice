@@ -2,11 +2,13 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="RestAssured"/>
 			<item value="RestAssuredProject"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="RestAssured"/>
 			<item value="RestAssuredProject"/>
 		</list>
 		<list key="version">

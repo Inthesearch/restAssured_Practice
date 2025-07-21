@@ -1,0 +1,12 @@
+package demo_module;
+
+import demo_module.utilities.payload;
+
+public class RA_02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(payload.getResponse());
+	}
+
+}

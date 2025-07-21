@@ -1,0 +1,39 @@
+package demo_module;
+
+import org.testng.Assert;
+
+import demo_module.utilities.ReusableMethods;
+import demo_module.utilities.payload;
+import io.restassured.path.json.JsonPath;
+
+public class RA_02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+			JsonPath response = ReusableMethods.rawToJson(payload.getResponse());
+//			Print No of courses returned by API
+			System.out.println(response.get("courses.size()").toString());
+			
+//			Print Total Purchase Amount
+			System.out.println(response.get("dashboard.purchaseAmount").toString());
+			
+//			Print Title of the first course
+			System.out.println(response.get("courses[0].title").toString());
+			
+//			Print All course titles and their respective Prices
+			for(int i = 0; i < response.getInt("courses.size()"); i++ ) {
+				System.out.println("\nCourse: "+response.getString("courses["+i+"].title")+"\nPrice: "+response.get("courses["+i+"].price"));
+			}
+			
+//			Print no of total copies sold
+			int noOfCopies = 0;
+			for(int i = 0; i < response.getInt("courses.size()"); i++ ) {
+				noOfCopies +=  response.getInt("courses["+i+"].copies");
+			}
+			System.out.println("\nTotal no. of copies sold: "+noOfCopies);
+			
+
+			
+	}
+
+}
